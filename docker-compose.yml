@@ -1,0 +1,50 @@
+version: '3'
+
+
+services:
+
+  neo4j:
+    image: neo4j:4.0.4
+    container_name: neo4j
+    restart: unless-stopped
+    volumes:
+      - D:\workspace\ConfluenceHelperServer\neo4j\data:/data
+      - D:\workspace\ConfluenceHelperServer\neo4j\plugins:/var/lib/neo4j/plugins
+#l      - /home/floo/workspace/ConfluenceHelperServer/neo4j/data:/data
+    environment:
+#      NEO4J_AUTH: neo4j/test
+      - NEO4J_AUTH=none
+      - NEO4J_dbms_security_procedures_unrestricted=gds.*
+      - NEO4J_dbms_security_procedures_whitelist=gds.*
+    ports:
+      # HTTP
+      - "7474:7474"
+      # "Bolt access"
+      - "7687:7687"
+    networks:
+      - donet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "3"
+
+  nginx:
+    image: nginx:1.17.10
+    container_name: webserver
+    restart: unless-stopped
+    volumes:
+      - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
+#l      - /home/floo/workspace/ConfluenceHelperServer/nginx/html:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "3"
+
+
+networks:
+  donet:
+    driver: bridge
