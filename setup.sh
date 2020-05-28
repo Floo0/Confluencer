@@ -4,4 +4,4 @@
 
 # Windows Version
 docker-compose -f D:\workspace\ConfluenceHelperServer\docker-compose.yml up -d neo4j
-docker-compose -f D:\workspace\ConfluenceHelperServer\docker-compose.yml up -d webserver
+docker-compose -f D:\workspace\ConfluenceHelperServer\docker-compose.yml up -d nginx

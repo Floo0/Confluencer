@@ -30,8 +30,8 @@ services:
         max-file: "3"
 
   nginx:
-    image: nginx:1.17.10
-    container_name: webserver
+    image: nginx:1.18.0
+    container_name: nginx
     restart: unless-stopped
     volumes:
       - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
