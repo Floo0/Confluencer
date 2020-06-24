@@ -4,18 +4,21 @@ version: '3'
 services:
 
   neo4j:
-    image: neo4j:4.0.4
+    image: neo4j:4.0.6
     container_name: neo4j
     restart: unless-stopped
     volumes:
       - D:\workspace\ConfluenceHelperServer\neo4j\data:/data
       - D:\workspace\ConfluenceHelperServer\neo4j\plugins:/var/lib/neo4j/plugins
+      - D:\workspace\ConfluenceHelperServer\neo4j\backup:/var/lib/neo4j/import
 #l      - /home/floo/workspace/ConfluenceHelperServer/neo4j/data:/data
     environment:
 #      NEO4J_AUTH: neo4j/test
       - NEO4J_AUTH=none
       - NEO4J_dbms_security_procedures_unrestricted=gds.*,apoc.*
       - NEO4J_dbms_security_procedures_whitelist=gds.*,apoc.*
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
     ports:
       # HTTP
       - "7474:7474"
