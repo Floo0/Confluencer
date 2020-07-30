@@ -37,7 +37,8 @@ services:
     container_name: nginx
     restart: unless-stopped
     volumes:
-      - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
+      # - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
+      - D:\workspace\ConfluenceHelperServer\client\dist:/usr/share/nginx/html
 #l      - /home/floo/workspace/ConfluenceHelperServer/nginx/html:/usr/share/nginx/html
     ports:
       - "80:80"

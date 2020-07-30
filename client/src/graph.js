@@ -100,6 +100,7 @@ export default class Graph extends PureComponent {
 
     // used to reload graph if data changed (after some action with neo4j)
     reloadGraph() {
+        // console.log("reloadGraph", this.filter)
         getGraph(this, this.filter)
     }
 
@@ -186,9 +187,9 @@ export default class Graph extends PureComponent {
         return items
     }
 
-    componentDidMount() {
-        this.reloadGraph()
-    }
+    // componentDidMount() {
+    //     this.reloadGraph()
+    // }
 
     componentDidUpdate() {
         this.graphRef.current.zoom(0.2, 0)
