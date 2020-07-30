@@ -1,0 +1,47 @@
+{
+  "name": "ConfluenceHelper",
+  "version": "1.0.0",
+  "description": "JS overview webpage to confluence. Visualises  confluence pages, superior hierarchical topics and relations.",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "nanoid": "^3.1.9",
+    "neo4j-driver": "^4.0.2",
+    "pubsub-js": "^1.8.0",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-datepicker": "^2.16.0",
+    "react-force-graph": "^1.33.1",
+    "react-select": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-encoding-plugin": "^0.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Floo0/ConfluenceHelper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Floo0/ConfluenceHelper/issues"
+  },
+  "homepage": "https://github.com/Floo0/ConfluenceHelper#readme"
+}

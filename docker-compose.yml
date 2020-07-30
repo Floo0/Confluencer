@@ -41,12 +41,33 @@ services:
 #l      - /home/floo/workspace/ConfluenceHelperServer/nginx/html:/usr/share/nginx/html
     ports:
       - "80:80"
+    networks:
+      - donet
     logging:
       driver: "json-file"
       options:
         max-size: "100k"
         max-file: "3"
 
+  client:
+    build: ./client
+    container_name: client
+    restart: unless-stopped
+    # depends_on:
+    #   - server
+    ports:
+      - 8080:8080
+      # - 8081:8081
+    volumes:
+      - ./client/package.json:/app/package.json
+      - ./client/webpack.config.js:/app/webpack.config.js
+      - ./client/src:/app/src
+      - ./client/dist:/app/dist
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "3"
 
 networks:
   donet:
