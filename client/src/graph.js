@@ -43,9 +43,9 @@ export default class Graph extends PureComponent {
         },
         this.colourType = {
             "knowledge": {h:359, s:85, l:60}, // red
-            "tool": {h:130, s:50, l:60}, // red
+            "tool": {h:120, s:60, l:60}, // green
             "paper": {h:225, s:75, l:60}, // blue
-            "project": {h:135, s:75, l:60}, // green
+            "project": {h:185, s:60, l:60}, // light blue
             "editor": {h:40, s:90, l:60}, // yellow
         }
         this.search = ". . ."
@@ -101,6 +101,7 @@ export default class Graph extends PureComponent {
     // used to reload graph if data changed (after some action with neo4j)
     reloadGraph() {
         // console.log("reloadGraph", this.filter)
+        this.search = ". . ."
         getGraph(this, this.filter)
     }
 
