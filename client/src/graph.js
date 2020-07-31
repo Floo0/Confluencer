@@ -106,14 +106,13 @@ export default class Graph extends PureComponent {
 
     parseNodeLabel(data) {
         // console.log("parseNodeLabel:", data)
-        var label = "Name: " + data.name
-        label += "<br>Short: " + data.short
-        // var label = "ID:" + data.id
+        var label = "<b>Name: </b>" + data.name
+        label += "<br><b>Short Description:</b><br>" + data.short
         label += "<br>"
-        label += "<br>ID:" + data.id
-        label += "<br>Page Rank: " + data.pageRank
-        // label += "<br>Label: " + data.label
-        label += "<br>Link: " + data.link
+        label += "<br><b>ID: </b>" + data.id
+        label += "<br><b>Page Rank: </b>" + data.pageRank
+        // label += "<br><b>Label: </b>" + data.label
+        label += "<br><b>Link: </b>" + data.link
         
         return label
     }
