@@ -241,9 +241,14 @@ export default class Graph extends PureComponent {
                                 // interaction
                                 onNodeClick={this.handleOnNodeClick.bind(this)}
                                 onNodeRightClick={this.handleNodeRightClick.bind(this)}
+                                onNodeDragEnd={node => {
+                                    node.fx = node.x;
+                                    node.fy = node.y;
+                                    node.fz = node.z;
+                                  }} // fix node after dragging
 
                                 // force engine
-                                d3AlphaMin={0.1} // 0.2 -> 0: nodes can be moved forever (other nodes will react)
+                                d3AlphaMin={0.0} // 0.2 -> 0: nodes can be moved forever (other nodes will react)
                                 d3AlphaDecay={0.0228} // 0.03
                                 d3VelocityDecay={0.4} // 0.2, 0.07
                                 // warmupTicks={100}
