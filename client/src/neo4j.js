@@ -545,8 +545,10 @@ export function updateNode(node) {
     if (node.deleteParents) {
         for (const parent of node.deleteParents) {
             const id = nanoid()
+            const sourceID = nanoid() // id for source node (is needed so that the next query will not depend on same nodes)
+            const targetID = nanoid() // id for target node
             deleteLinks.push(id)
-            query += ` MATCH (n)-[` + id + `:` + relationType + `]->(m) WHERE ID(n)=` + parent.replace(/(^0+)(.)/, '$2') + ` AND ID(m)=` + node.id.replace(/(^0+)(.)/, '$2')
+            query += ` MATCH (` + sourceID + `)-[` + id + `:` + relationType + `]->(` + targetID + `) WHERE ID(` + sourceID + `)=` + parent.replace(/(^0+)(.)/, '$2') + ` AND ID(` + targetID + `)=` + node.id.replace(/(^0+)(.)/, '$2')
         }
     }
     query += ` SET ` + nodeID + ` += ` + JSON.stringify(properties)

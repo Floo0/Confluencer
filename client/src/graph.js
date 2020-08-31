@@ -123,16 +123,16 @@ export default class Graph extends PureComponent {
         // console.log("renderNode", node)
 
         // draw nodes, node shape -> circle
-        var rad = 2
+        var rad = 1
         if (node.pageRank !== 0) {
             // rad = (1/node.pageRank + rad)/2
-            rad = node.pageRank*10 + rad
+            rad = node.pageRank*15 + rad
         }
 
         // highlight node if searched for (in graph header)
         if (node.name.toLowerCase().includes(this.search.toLowerCase())) {
             ctx.beginPath()
-            ctx.arc(node.x, node.y, rad * 1.5, 0, 2 * Math.PI, false)
+            ctx.arc(node.x, node.y, rad * 1.2, 0, 2 * Math.PI, false)
             ctx.fillStyle = "hsl(300, 75%, 60%)"
             ctx.fill()
         }
@@ -145,11 +145,12 @@ export default class Graph extends PureComponent {
         }
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
         ctx.beginPath()
-        ctx.arc(node.x, node.y, rad, 0, 2 * Math.PI, false)
+        ctx.arc(node.x, node.y, rad/1.3, 0, 2 * Math.PI, false)
         ctx.fillStyle = "hsl(300, 75%, 60%)" // if none matches
         if (node.label in this.colourType) {
             const colour = this.colourType[node.label]
-            const colourDiffDays = Math.round(45/(1+Math.exp(-0.05*(diffDays-20)))) + 50
+            // const colourDiffDays = Math.round(45/(1+Math.exp(-0.05*(diffDays-20)))) + 50 // 31.08.2020
+            const colourDiffDays = Math.round(45/(1+Math.exp(-0.07*(diffDays-50)))) + 50// 45/(1+e^(-0.07*(x-50)))+50, x=[-100,100]
             // if (node.label ==="editor") {console.log("colour:", "hsl(" + colour.h + ", " + colour.s + "%, " + colourDiffDays + "%)")}
             ctx.fillStyle = "hsl(" + colour.h + ", " + colour.s + "%, " + colourDiffDays + "%)"
         }
@@ -160,7 +161,7 @@ export default class Graph extends PureComponent {
         var label = node.name.slice(0, maxLength)
         if (node.name.length > maxLength) {label += `...`}
         // const fontSize = 12/currentGlobalScale // standard 12pt, scale independent
-        const fontSize = 3 + 5/currentGlobalScale // 7/currentGlobalScale + currentGlobalScale*2
+        const fontSize = 3 + 3/currentGlobalScale // 7/currentGlobalScale + currentGlobalScale*2
         const offset = rad*(currentGlobalScale + 65)/100 + 1
         // const textWidth = ctx.measureText(label).width
         // const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2); // some padding
@@ -250,7 +251,7 @@ export default class Graph extends PureComponent {
                                 // force engine
                                 d3AlphaMin={0.0} // 0.2 -> 0: nodes can be moved forever (other nodes will react)
                                 d3AlphaDecay={0.0228} // 0.03
-                                d3VelocityDecay={0.4} // 0.2, 0.07
+                                d3VelocityDecay={0.2} // 0.2, 0.07
                                 // warmupTicks={100}
 
                                 // rendering
