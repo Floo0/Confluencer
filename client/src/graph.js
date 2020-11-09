@@ -49,6 +49,7 @@ export default class Graph extends PureComponent {
             "editor": {h:40, s:90, l:60}, // yellow
         }
         this.search = ". . ."
+        this.fadingGradient = 0.02
 
         PubSub.subscribe('graph', this.onMessage.bind(this))
     }
@@ -61,6 +62,10 @@ export default class Graph extends PureComponent {
                 break
             case "filter":
                 this.filter = data.use
+                this.reloadGraph()
+                break
+            case "fadingGradient":
+                this.fadingGradient = data.use
                 this.reloadGraph()
                 break
         }
@@ -149,8 +154,12 @@ export default class Graph extends PureComponent {
         ctx.fillStyle = "hsl(300, 75%, 60%)" // if none matches
         if (node.label in this.colourType) {
             const colour = this.colourType[node.label]
-            // const colourDiffDays = Math.round(45/(1+Math.exp(-0.05*(diffDays-20)))) + 50 // 31.08.2020
-            const colourDiffDays = Math.round(45/(1+Math.exp(-0.07*(diffDays-50)))) + 50// 45/(1+e^(-0.07*(x-50)))+50, x=[-100,100]
+            // version 31.08.2020:
+            // const colourDiffDays = Math.round(45/(1+Math.exp(-0.05*(diffDays-20)))) + 50 
+            // version 09.11.2020:
+            // const colourDiffDays = Math.round(45/(1+Math.exp(-0.07*(diffDays-50)))) + 50// 45/(1+e^(-0.07*(x-50)))+50, x=[-100,100]
+            const offset = 3.64/this.fadingGradient
+            const colourDiffDays = Math.round(45/(1+Math.exp(-this.fadingGradient*(diffDays-offset)))) + 50// 45/(1+e^(-0.07*(x-50)))+50, x=[-100,100]
             // if (node.label ==="editor") {console.log("colour:", "hsl(" + colour.h + ", " + colour.s + "%, " + colourDiffDays + "%)")}
             ctx.fillStyle = "hsl(" + colour.h + ", " + colour.s + "%, " + colourDiffDays + "%)"
         }

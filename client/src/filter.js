@@ -22,6 +22,7 @@ export default class Filter extends PureComponent {
             selectedOptions: [{label: "Confluencer", value: "9", data: {}}],
             minHop: 1,
             maxHop: 11,
+            fadingGradient: 0.02,
         }
 
         this.filter = {
@@ -82,71 +83,92 @@ export default class Filter extends PureComponent {
         PubSub.publish('graph', {"do": "filter", "use": this.filter})
     }
 
+    handleFadingGradient(event) {
+        this.setState({fadingGradient: event.target.value})
+        PubSub.publish('graph', {"do": "fadingGradient", "use": event.target.value})
+    }
+
     render() {
         // console.log("render filter", this.state, this.filter)
         return (
             <div>
                 <Card style={{border: "#d8cebc solid 2px"}}>
                 <Card.Header onClick={() => {this.setState({collapse: !this.state.collapse})}} style={{height: "63px"}}>
-                        <h5 style={{marginTop: "7px", float: "left", minWidth: "150px"}}>Filter</h5>
+                        <h5 style={{marginTop: "7px", float: "left", minWidth: "150px"}}>Filter and Settings</h5>
                     </Card.Header>
                     <Collapse in={!this.state.collapse} className={"p-0"}>
                         <Card.Body className="m-1" style={{height: window.innerHeight/1.3 - 8}}>
 
-                        <br/>
-                        <label>Types to include:</label>
-                        <InputGroup className="p-1">
-                            <div style={{width: '300px'}}>
-                                <Select
-                                    isMulti
-                                    // closeMenuOnSelect={false}
-                                    value={this.state.selectedLabels}
-                                    options={this.state.labels}
-                                    // onFocus={this.handleClickSelect.bind(this)}
-                                    onChange={this.handleLabelsChange.bind(this)}
-                                />
-                            </div>
-                        </InputGroup>
+                            <br/>
+                            <label>Types to include:</label>
+                            <InputGroup className="p-1">
+                                <div style={{width: '300px'}}>
+                                    <Select
+                                        isMulti
+                                        // closeMenuOnSelect={false}
+                                        value={this.state.selectedLabels}
+                                        options={this.state.labels}
+                                        // onFocus={this.handleClickSelect.bind(this)}
+                                        onChange={this.handleLabelsChange.bind(this)}
+                                    />
+                                </div>
+                            </InputGroup>
+                            
+                            <br/>
+                            <label>Utilized by:</label>
+                            <InputGroup className="p-1">
+                                <div style={{width: '300px'}}>
+                                    <Select
+                                        isMulti
+                                        // closeMenuOnSelect={false}
+                                        value={this.state.selectedOptions}
+                                        options={this.state.options}
+                                        // onFocus={this.handleClickSelect.bind(this)}
+                                        onChange={this.handleOptionsChange.bind(this)}
+                                    />
+                                </div>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="basic-addon1" style={{width: "90px"}}> Min Hop</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <div style={{width: "90px"}}>
+                                        <FormControl
+                                            value={this.state.minHop}
+                                            type="number"
+                                            onChange={this.handleMinHopChange.bind(this)}
+                                        />
+                                    </div>
+                                </InputGroup>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="basic-addon1" style={{width: "90px"}}> Max Hop</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <div style={{width: "90px"}}>
+                                        <FormControl
+                                            value={this.state.maxHop}
+                                            type="number"
+                                            onChange={this.handleMaxHopChange.bind(this)}
+                                        />
+                                    </div>
+                                </InputGroup>
+                            </InputGroup>
+                            
+                            <br/>
+                            <label>Fading Settings:</label>
+                            <InputGroup className="p-1">
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="basic-addon1" style={{width: "90px"}}>Gradient</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <div style={{width: "90px"}}>
+                                    <FormControl
+                                        value={this.state.fadingGradient}
+                                        type="number"
+                                        step={0.01}
+                                        onChange={this.handleFadingGradient.bind(this)}
+                                    />
+                                </div>
+                            </InputGroup>
                         
-                        <br/>
-                        <label>Utilized by:</label>
-                        <InputGroup className="p-1">
-                            <div style={{width: '300px'}}>
-                                <Select
-                                    isMulti
-                                    // closeMenuOnSelect={false}
-                                    value={this.state.selectedOptions}
-                                    options={this.state.options}
-                                    // onFocus={this.handleClickSelect.bind(this)}
-                                    onChange={this.handleOptionsChange.bind(this)}
-                                />
-                            </div>
-                            <InputGroup>
-                                <InputGroup.Prepend>
-                                    <InputGroup.Text id="basic-addon1" style={{width: "90px"}}> Min Hop</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <div style={{width: "60px"}}>
-                                    <FormControl
-                                        value={this.state.minHop}
-                                        type="number"
-                                        onChange={this.handleMinHopChange.bind(this)}
-                                    />
-                                </div>
-                            </InputGroup>
-                            <InputGroup>
-                                <InputGroup.Prepend>
-                                    <InputGroup.Text id="basic-addon1" style={{width: "90px"}}> Max Hop</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <div style={{width: "60px"}}>
-                                    <FormControl
-                                        value={this.state.maxHop}
-                                        type="number"
-                                        onChange={this.handleMaxHopChange.bind(this)}
-                                    />
-                                </div>
-                            </InputGroup>
-                        </InputGroup>
-
                         </Card.Body>
                     </Collapse>
                 </Card>
