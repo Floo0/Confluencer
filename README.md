@@ -1,2 +1,2 @@
 # ConfluenceHelperServer
-Server with docker envoronment, running neo4j as database and niginx to host ConfluenceHelper website.
+Server for docker environment running neo4j as database and niginx to host Confluencer website. Confluencer helps to manage confluence spaces through great visual representation.
