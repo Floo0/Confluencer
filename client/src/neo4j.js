@@ -6,7 +6,8 @@ import {cloneDeep} from 'lodash'
 
 
 // const host = 'bolt://localhost'
-const host = 'bolt://141.30.136.185'
+// const host = 'bolt://141.30.136.170/'
+const host = 'bolt://' + window.location.hostname + '/'
 const port = '7687'
 const relationType = 'DETAIL'
 

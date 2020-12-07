@@ -1,4 +1,5 @@
-### Cypher ###
+# Cypher Queries
+<pre>
 # create a new database https://neo4j.com/developer/manage-multiple-databases/ only in enterprise edition
 create database testdb
 
@@ -13,3 +14,15 @@ MATCH (n)-[r]->(m) RETURN n, TYPE(r), m
 
 # delete all nodes
 MATCH (n) DETACH DELETE n
+</pre>
+
+
+# Backup
+
+## Export
+Automatically done via APOC call  
+`CALL apoc.export.json.all(replace(replace(replace(toString(datetime()),":","_"),"-",""),".","")+'_db_backup.json',{useTypes:true, storeNodeIds:false})`
+
+## Import
+Open `<host>:7474/browser/` 
+`CALL apoc.import.json('20201202T09_24_01485Z_db_backup.json')`
