@@ -132,13 +132,17 @@ export default class Graph extends PureComponent {
         var rad = 1
         if (node.pageRank !== 0) {
             // rad = (1/node.pageRank + rad)/2
-            rad = node.pageRank*15 + rad
+            rad = (node.pageRank*15 + rad)/1.3
         }
 
         // highlight node if searched for (in graph header)
         if (node.name.toLowerCase().includes(this.search.toLowerCase())) {
+            const d = new Date()
+            const sec = d.getMilliseconds()/1000 + d.getSeconds() % 3
             ctx.beginPath()
-            ctx.arc(node.x, node.y, rad * 1.2, 0, 2 * Math.PI, false)
+            // arc -> (x, y, radius, startAngle, endAngle [, anticlockwise])
+            // see also: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
+            ctx.arc(node.x, node.y, rad*1.0 + 1.0*sec, 0, 2 * Math.PI, false)
             ctx.fillStyle = "hsl(300, 75%, 60%)"
             ctx.fill()
         }
@@ -151,7 +155,7 @@ export default class Graph extends PureComponent {
         }
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
         ctx.beginPath()
-        ctx.arc(node.x, node.y, rad/1.3, 0, 2 * Math.PI, false)
+        ctx.arc(node.x, node.y, rad, 0, 2 * Math.PI, false)
         ctx.fillStyle = "hsl(300, 75%, 60%)" // if none matches
         if (node.label in this.colourType) {
             const colour = this.colourType[node.label]

@@ -9,6 +9,7 @@ import Tool from './tool'
 import Paper from './paper'
 import Project from './project'
 import Editor from './editor'
+import Data from './data'
 
 
 export default class Manipulator extends PureComponent {
@@ -67,6 +68,8 @@ export default class Manipulator extends PureComponent {
                 return(<Project node={this.state.node.id}/>)
             case "editor":
                 return(<Editor node={this.state.node.id}/>)
+            case "data":
+                return(<Data node={this.state.node.id}/>)
             default:
                 return(<div>Unknown node (type).</div>)
         }
