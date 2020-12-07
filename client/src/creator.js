@@ -6,13 +6,14 @@ import Tool from './tool'
 import Paper from './paper'
 import Project from './project'
 import Editor from './editor'
+import Data from './data'
 
 
 export default class Creator extends PureComponent {
     constructor(props) {
         super(props)
 
-        this.types = ["Knowledge", "Tool", "Paper", "Project", "Editor"]
+        this.types = ["Knowledge", "Tool", "Paper", "Project", "Editor", "Data"]
 
         this.state = {
             collapse: true,
@@ -54,6 +55,8 @@ export default class Creator extends PureComponent {
                 return <Project/>
             case "Editor":
                 return <Editor/>
+            case "Data":
+                return <Data/>
             default:
                 return <div>Please select a node type.</div>
         }

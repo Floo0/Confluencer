@@ -39,7 +39,7 @@ export default class Graph extends PureComponent {
 
         this.graphRef = React.createRef()
         this.filter = {
-            labels: ["knowledge", "tool", "paper"],
+            labels: ["knowledge", "tool", "paper", "paper"],
         },
         this.colourType = {
             "knowledge": {h:359, s:85, l:60}, // red
@@ -47,6 +47,7 @@ export default class Graph extends PureComponent {
             "paper": {h:225, s:75, l:60}, // blue
             "project": {h:185, s:60, l:60}, // light blue
             "editor": {h:40, s:90, l:60}, // yellow
+            "data": {h:275, s:90, l:60}, // purple
         }
         this.search = ". . ."
         this.fadingGradient = 0.02

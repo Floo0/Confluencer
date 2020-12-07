@@ -7,24 +7,17 @@ import PubSub from 'pubsub-js'
 import { getNodes, getNode, createNode, updateNode, deleteNode } from './neo4j'
 
 
-export default class Knowledge extends Component {
+export default class Data extends Component {
     constructor(props) {
         super(props)
 
-        this.categories = ["banana","carrot"]
-        // this.nodes = [
-        //     { value: 'chocolate', label: 'Chocolate' },
-        //     { value: 'strawberry', label: 'Strawberry' },
-        //     { value: 'vanilla', label: 'Vanilla' },
-        //   ]
-
         this.state = {
             id: "00", // current node id
-            name: "Unicorn Knowledge",
-            link: "https://en.wikipedia.org/wiki/Unicorn",
+            name: "Unicorn Data",
+            link: "https://www.unicornsdatabase.com/",
             creation: new Date(),
             update: new Date(),
-            short: "Unicorns can fly and poop ice cream.",
+            short: "Unicorns data source for unicorn competitions.",
             parents: [],  // current parent relations
 
             oldParents: [], // retrieved parent ids, to compare with current parents
@@ -79,7 +72,7 @@ export default class Knowledge extends Component {
         for (const parent of this.state.parents) {
             links.push(parent.value)
         }
-        createNode('knowledge', node, links)
+        createNode('data', node, links)
         setTimeout(() => {
             setTimeout(() => PubSub.publish('graph', {"do": "reload", "use": ""}), 1000)
             PubSub.publish('creator', {"do": "update", "use": ""})
@@ -138,7 +131,7 @@ export default class Knowledge extends Component {
     }
 
     render() {
-        // console.log("render knowledge", this.state)
+        // console.log("render data", this.state)
         return (
             <div>
                 <InputGroup className="mb-6 p-1 pt-2">

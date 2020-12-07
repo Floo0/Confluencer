@@ -17,6 +17,7 @@ export default class Filter extends PureComponent {
                 {value: "knowledge", label: "Knowledge"},
                 {value: "tool", label: "Tool"},
                 {value: "paper", label: "Paper"},
+                {value: "data", label: "Data"},
             ],
             options: [],
             selectedOptions: [{label: "Confluencer", value: "9", data: {}}],

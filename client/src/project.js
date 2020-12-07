@@ -132,7 +132,7 @@ export default class Project extends Component {
         const lineHeight = "30px"
         return (
             <div>
-                <InputGroup className="mb-6 p-1 h-25">
+                <InputGroup className="mb-6 p-1 pt-2">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1" style={{width: "80px"}}> Name</InputGroup.Text>
                     </InputGroup.Prepend>

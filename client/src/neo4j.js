@@ -492,6 +492,10 @@ export function createNode(type, node, parents) {
         case "editor":
             query += ` MERGE (` + nodeID + `:editor {name: '` + node.Name + `', link: '` + node.Link + `'})`
             break
+        case "data":
+            query += ` MERGE (` + nodeID + `:data {name: '` + node.Name + `', link: '` + node.Link + `'`
+            query += `, creation: '` + node.Creation + `', update: '` + node.Update + `', short: '` + node.Short +`'})`
+            break
     }
     for (const id of linkIDs) {
         query += ` MERGE (` + id + `)-[:` + relationType + `]->(` + nodeID + `)`
