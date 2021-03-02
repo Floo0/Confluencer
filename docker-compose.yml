@@ -10,10 +10,13 @@ services:
     container_name: neo4j
     restart: unless-stopped
     volumes:
-      - D:\workspace\ConfluenceHelperServer\neo4j\data:/data
-      - D:\workspace\ConfluenceHelperServer\neo4j\plugins:/var/lib/neo4j/plugins
-      - D:\workspace\ConfluenceHelperServer\neo4j\backup:/var/lib/neo4j/import
+#w      - D:\workspace\ConfluenceHelperServer\neo4j\data:/data
+#w      - D:\workspace\ConfluenceHelperServer\neo4j\plugins:/var/lib/neo4j/plugins
+#w      - D:\workspace\ConfluenceHelperServer\neo4j\backup:/var/lib/neo4j/import
 #l      - /home/floo/workspace/ConfluenceHelperServer/neo4j/data:/data
+      - ./neo4j/data:/data
+      - ./neo4j/plugins:/var/lib/neo4j/plugins
+      - ./neo4j/backup:/var/lib/neo4j/import
     environment:
 #      NEO4J_AUTH: neo4j/test
       - NEO4J_AUTH=none
@@ -40,8 +43,9 @@ services:
     restart: unless-stopped
     volumes:
       # - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
-      - D:\workspace\ConfluenceHelperServer\client\dist:/usr/share/nginx/html
+#w      - D:\workspace\ConfluenceHelperServer\client\dist:/usr/share/nginx/html
 #l      - /home/floo/workspace/ConfluenceHelperServer/nginx/html:/usr/share/nginx/html
+      - ./nginx/html:/usr/share/nginx/html
     ports:
       - "80:80"
     networks:
@@ -59,8 +63,8 @@ services:
     # depends_on:
     #   - server
     ports:
-      - 8080:8080
-      # - 8081:8081
+      #- 8080:8080
+      - 8081:8080
     volumes:
       - ./client/package.json:/app/package.json
       - ./client/webpack.config.js:/app/webpack.config.js
