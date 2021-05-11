@@ -4,7 +4,7 @@
   "description": "JS overview webpage to confluence. Visualises  confluence pages, superior hierarchical topics and relations.",
   "main": "webpack.config.js",
   "dependencies": {
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "nanoid": "^3.1.9",
     "neo4j-driver": "^4.0.2",
     "pubsub-js": "^1.8.0",
