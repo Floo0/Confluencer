@@ -21,7 +21,8 @@ MATCH (n) DETACH DELETE n
 
 ## Export
 Automatically done via APOC call  
-`CALL apoc.export.json.all(replace(replace(replace(toString(datetime()),":","_"),"-",""),".","")+'_db_backup.json',{useTypes:true, storeNodeIds:false})`
+`CALL apoc.export.json.all(replace(replace(replace(toString(datetime()),":","_"),"-",""),".","")+'_db_backup.json',{useTypes:true, storeNodeIds:false})`  
+&rarr; If permission is denied, change folder permission (in particular for Confluencer/neo4j/backup from root to "user").
 
 ## Import
 Open `<host>:7474/browser/` 
