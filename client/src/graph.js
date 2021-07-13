@@ -175,7 +175,7 @@ export default class Graph extends PureComponent {
         var label = node.name.slice(0, maxLength)
         if (node.name.length > maxLength) {label += `...`}
         // const fontSize = 12/currentGlobalScale // standard 12pt, scale independent
-        const fontSize = 3 + 3/currentGlobalScale // 7/currentGlobalScale + currentGlobalScale*2
+        const fontSize = 3 + 3/currentGlobalScale * rad // 7/currentGlobalScale + currentGlobalScale*2
         const offset = rad*(currentGlobalScale + 65)/100 + 1
         // const textWidth = ctx.measureText(label).width
         // const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2); // some padding

@@ -362,7 +362,7 @@ function updateNeo4j(session) {
 // use filter to limit search
 // filter is defined in filterQuery()
 export function getGraph(component, filter) {
-    // console.log("getData")
+    // console.log("getData", filter)
 
     var driver = createDriver()    
     var session = createSession(driver)
