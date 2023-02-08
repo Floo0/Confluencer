@@ -5,6 +5,19 @@ version: '3'
 
 services:
 
+  # confluence:
+  #   image: atlassian/confluence-server:7.18.2
+  #   container_name: confluence
+  #   volumes:
+  #     - ./confluence/data:/var/atlassian/application-data/confluence
+  #   ports:
+  #     - "80:8090"
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "100k"
+  #       max-file: "3"
+
   neo4j:
     image: neo4j:4.0.6
     container_name: neo4j
@@ -38,16 +51,21 @@ services:
         max-file: "3"
 
   nginx:
-    image: nginx:1.18.0
+    image: nginx:1.21.1
     container_name: nginx
     restart: unless-stopped
     volumes:
       # - D:\workspace\ConfluenceHelperServer\nginx\html:/usr/share/nginx/html
 #w      - D:\workspace\ConfluenceHelperServer\client\dist:/usr/share/nginx/html
 #l      - /home/floo/workspace/ConfluenceHelperServer/nginx/html:/usr/share/nginx/html
-      - ./nginx/html:/usr/share/nginx/html
+      #- ./nginx/html:/usr/share/nginx/html
+      - ./client/dist:/usr/share/nginx/html
+      # - ./nginx/html:/etc/nginx/html
+      - ./nginx/server-nginx.conf:/etc/nginx/nginx.conf
     ports:
+      - "8080:8080"
       - "80:80"
+      # - "8090:8090"
     networks:
       - donet
     logging:
